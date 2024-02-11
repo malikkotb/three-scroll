@@ -30,7 +30,7 @@ function Item({ url, scale, ...props }) {
     );
   });
   return (
-    <group {...props}>
+    <motion.group {...props}>
       <Image
         ref={ref}
         onPointerOver={() => hover(true)}
@@ -38,7 +38,7 @@ function Item({ url, scale, ...props }) {
         scale={scale}
         url={url}
       />
-    </group>
+    </motion.group>
   );
 }
 
