@@ -3,9 +3,9 @@ import { items } from "./data";
 import { motion } from "framer-motion";
 const Card = ({ setCurrent, item }) => {
   return (
-    <div>
+    <div className="inline-block w-full mb-4">
       <motion.img
-        className="cursor-pointer"
+        className="cursor-pointer w-full"
         onClick={() => setCurrent(item)}
         whileHover={{
           scale: 1.01,
@@ -15,6 +15,7 @@ const Card = ({ setCurrent, item }) => {
         }}
         whileTap={{ scale: 0.99 }}
         src={item.url}
+        layoutId={`card-${item.id}`}
       />
       <div></div>
     </div>
