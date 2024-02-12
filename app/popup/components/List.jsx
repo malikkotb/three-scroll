@@ -26,7 +26,7 @@ export default function List({ setCurrent }) {
   return (
     <div className="p-4">
       <h1 className="text-center font-medium text-4xl mb-8">Images</h1>
-      <div className="">
+      <div className="grid grid-cols-2">
         {items.map((item) => (
           <Card key={item.id} setCurrent={setCurrent} item={item} />
         ))}
