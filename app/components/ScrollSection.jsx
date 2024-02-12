@@ -3,6 +3,7 @@ import * as THREE from "three";
 import { useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useIntersect, Image, ScrollControls, Scroll } from "@react-three/drei";
+import {motion} from "framer-motion"
 
 function Item({ url, scale, ...props }) {
   const visible = useRef(false);

@@ -12,7 +12,7 @@ export default function Modal({ setCurrent, current }) {
       className="fixed inset-0 bg-black/40 z-50 cursor-pointer overflow-y-scroll"
     >
       <div
-        className="w-full max-w-[700px] mx-auto mt-80 px-8 cursor-default"
+        className="w-full max-w-[700px] mx-auto mt-20 px-8 cursor-default"
         onClick={(e) => e.stopPropagation()}
       >
         <motion.div layoutId={`card-${current.id}`}>

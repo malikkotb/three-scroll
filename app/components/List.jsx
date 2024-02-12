@@ -5,7 +5,7 @@ const Card = ({ setCurrent, item }) => {
   return (
     <div className="inline-block w-full mb-4">
       <motion.img
-        className="cursor-pointer w-full"
+        className="cursor-pointer w-full object-scale-down"
         onClick={() => setCurrent(item)}
         whileHover={{
           scale: 1.01,
