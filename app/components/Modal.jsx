@@ -15,7 +15,7 @@ export default function Modal({ setCurrent, current }) {
         className="w-full max-w-[700px] mx-auto mt-20 px-8 cursor-default"
         onClick={(e) => e.stopPropagation()}
       >
-        <motion.div layoutId={`card-${current.id}`}>
+        <motion.div layoutId={`image-${current.id}`}>
           <img src={current.url} />
         </motion.div>
       </div>

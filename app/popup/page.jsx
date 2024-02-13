@@ -5,7 +5,7 @@ import List from './components/List'
 import Modal from './components/Modal'
 
 export default function page() {
-  const [current, setCurrent] = useState(null) // urrently selected card
+  const [current, setCurrent] = useState(null) // currently selected card
   return (
     <div>
       <List setCurrent={setCurrent} />

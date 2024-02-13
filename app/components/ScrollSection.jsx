@@ -3,9 +3,10 @@ import * as THREE from "three";
 import { useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useIntersect, Image, ScrollControls, Scroll } from "@react-three/drei";
-import {motion} from "framer-motion"
+import { motion } from "framer-motion";
+import Modal from "./Modal";
 
-function Item({ url, scale, ...props }) {
+function Item({ url, setCurrent, scale, ...props }) {
   const visible = useRef(false);
   const [hovered, hover] = useState(false);
   const ref = useIntersect((isVisible) => (visible.current = isVisible));
@@ -34,6 +35,7 @@ function Item({ url, scale, ...props }) {
     <motion.group {...props}>
       <Image
         ref={ref}
+        onClick={() => setCurrent(item)}
         onPointerOver={() => hover(true)}
         onPointerOut={() => hover(false)}
         scale={scale}
@@ -43,43 +45,60 @@ function Item({ url, scale, ...props }) {
   );
 }
 
-function Items() {
+function Items({ setCurrent }) {
   const { width: w, height: h } = useThree((state) => state.viewport);
   return (
     <Scroll>
-      <Item url="./1.jpg" scale={[w / 3, w / 3, 1]} position={[-w / 6, 0, 0]} />
-      <Item url="./2.jpg" scale={[2, w / 3, 1]} position={[w / 30, -h, 0]} />
       <Item
+        setCurrent={setCurrent}
+        url="./1.jpg"
+        scale={[w / 3, w / 3, 1]}
+        position={[-w / 6, 0, 0]}
+      />
+      <Item
+        setCurrent={setCurrent}
+        url="./2.jpg"
+        scale={[2, w / 3, 1]}
+        position={[w / 30, -h, 0]}
+      />
+      <Item
+        setCurrent={setCurrent}
         url="./3.jpg"
         scale={[w / 3, w / 5, 1]}
         position={[-w / 4, -h * 1, 0]}
       />
       <Item
+        setCurrent={setCurrent}
         url="./4.jpg"
         scale={[w / 5, w / 5, 1]}
         position={[w / 4, -h * 1.2, 0]}
       />
       <Item
+        setCurrent={setCurrent}
         url="./5.jpg"
         scale={[w / 5, w / 5, 1]}
         position={[w / 10, -h * 1.75, 0]}
       />
       <Item
+        setCurrent={setCurrent}
         url="./6.jpg"
         scale={[w / 3, w / 3, 1]}
         position={[-w / 4, -h * 2, 0]}
       />
       <Item
+        setCurrent={setCurrent}
         url="./7.jpg"
         scale={[w / 3, w / 5, 1]}
         position={[-w / 4, -h * 2.6, 0]}
       />
       <Item
+        setCurrent={setCurrent}
         url="./8.jpg"
         scale={[w / 2, w / 2, 1]}
         position={[w / 4, -h * 3.1, 0]}
       />
       <Item
+        setCurrent={setCurrent}
         url="./9.jpg"
         scale={[w / 2.5, w / 2, 1]}
         position={[-w / 6, -h * 4.1, 0]}
@@ -89,7 +108,11 @@ function Items() {
 }
 
 export default function ScrollSection() {
+  const [current, setCurrent] = useState(null); // currently selected image
+
   return (
+    <>
+      <Modal current={current} setCurrent={setCurrent} />
       <Canvas
         orthographic
         camera={{ zoom: 80 }}
@@ -98,7 +121,7 @@ export default function ScrollSection() {
       >
         <color attach="background" args={["#f0f0f0"]} />
         <ScrollControls damping={0} pages={5}>
-          <Items />
+          <Items setCurrent={setCurrent} />
           <Scroll html style={{ width: "100%" }}>
             <h1
               style={{
@@ -128,5 +151,6 @@ export default function ScrollSection() {
           </Scroll>
         </ScrollControls>
       </Canvas>
+    </>
   );
 }
